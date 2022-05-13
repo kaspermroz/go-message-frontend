@@ -20,7 +20,6 @@ export const Form = () => {
                 <Input value={message} onChange={handleChange} />
                 <Button type="submit">Send</Button>
             </form>
-
         </div>
     )
 }
