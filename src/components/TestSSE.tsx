@@ -1,7 +1,7 @@
-import {useEffect} from "react";
+import React, { useEffect } from "react";
 
 export const TestSSE = () => {
-    useEffect(() => {
+   useEffect(() => {
         const sse = new EventSource('http://localhost:8080/api/v1/test',
             { withCredentials: false });
         function getRealtimeData(data: any) {

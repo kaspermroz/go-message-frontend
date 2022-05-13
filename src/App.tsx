@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {TestSSE} from "./components/TestSSE";
+import { TestSSE } from "./components/TestSSE";
+import { Form } from "./components/Form";
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
                 <p>
                     <TestSSE/>
                 </p>
+                <Form />
             </header>
         </div>
     );
