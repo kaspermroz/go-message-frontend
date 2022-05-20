@@ -1,6 +1,8 @@
 import React, {ChangeEventHandler, FormEventHandler, useState} from 'react'
 import { Input, Button } from '@chakra-ui/react'
 
+import { sendMessage } from "../api/chats";
+
 export const Form = () => {
     const [message, setMessage] = useState('')
 
@@ -11,14 +13,15 @@ export const Form = () => {
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        console.log(message)
+        sendMessage(message)
+        setMessage("")
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <Input value={message} onChange={handleChange} />
-                <Button type="submit">Send</Button>
+                <Button colorScheme="teal" type="submit">Send</Button>
             </form>
         </div>
     )
