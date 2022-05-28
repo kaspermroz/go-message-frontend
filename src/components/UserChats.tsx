@@ -1,26 +1,18 @@
-import React, { useEffect } from "react";
-import { EventSourcePolyfill } from 'event-source-polyfill'
+import React, { useMemo } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSSE } from "../api/chats";
 
 export const UserChats = () => {
-    useEffect(() => {
-        const sse = new EventSourcePolyfill('http://localhost:8080/api/v1/chats', {
-            headers: {
-                "User-ID": '2137'
-            }
-        });
-        function getRealtimeData(data: any) {
-            console.log(data)
+    const { user } = useAuth0()
+    const options = useMemo(() => ({
+        headers: {
+            "User-ID": user?.sub ?? '',
         }
-        sse.onopen = () => console.log("All Chats SSE conn open")
-        sse.addEventListener("data", (e) => {
-            // @ts-ignore
-            getRealtimeData(JSON.parse(e.data))
-        })
+    }), [user?.sub])
 
-        return () => {
-            sse.close();
-        };
-    }, []);
+    const { data } = useSSE('chats', options)
+
+    console.log(data)
 
     return (<span/>)
 }
