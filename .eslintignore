@@ -1,0 +1,7 @@
+node_modules
+public
+**/__tests__/*
+*.spec.tsx
+*.test.tsx
+config
+build
