@@ -4,15 +4,16 @@ import './styles/index.css';
 import App from './components/App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { ChatContextProvider } from './context/chat';
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 if (!rootElement) {
-  throw new Error('Failed to find the root element')
+  throw new Error('Failed to find the root element');
 }
 
-const root = ReactDOM.createRoot(rootElement)
-const domain = process.env.REACT_APP_AUTH0_DOMAIN ?? ''
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID ?? ''
+const root = ReactDOM.createRoot(rootElement);
+const domain = process.env.REACT_APP_AUTH0_DOMAIN ?? '';
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID ?? '';
 
 root.render(
   <React.StrictMode>
@@ -22,7 +23,9 @@ root.render(
       redirectUri={window.location.origin}
     >
       <ChakraProvider>
-        <App/>
+        <ChatContextProvider>
+          <App />
+        </ChatContextProvider>
       </ChakraProvider>
     </Auth0Provider>
   </React.StrictMode>,

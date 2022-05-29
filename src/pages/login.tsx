@@ -10,7 +10,7 @@ export const LoginPage = () => {
       <Box
         maxW="330px"
         w="full"
-        maxH="500px"
+        h="500px"
         boxShadow="2xl"
         rounded="md"
         overflow="hidden"
@@ -18,7 +18,7 @@ export const LoginPage = () => {
       >
         <Center h="full">
           {isLoading ? (
-            <Spinner />
+            <Spinner size="xl" color="teal" />
           ) : (
             <Stack textAlign="center" align="center" p={6}>
               <Text my={8} fontSize="2xl">
