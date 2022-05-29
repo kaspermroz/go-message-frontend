@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, FormEventHandler, useState } from 'react';
-import { Input, Button } from '@chakra-ui/react';
+import { Input, Button, HStack } from '@chakra-ui/react';
+import { EmailIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { sendMessage } from '../api/chats';
@@ -22,10 +23,15 @@ export const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Input value={message} onChange={handleChange} />
-        <Button colorScheme="teal" type="submit">
-          Send
-        </Button>
+        <HStack>
+          <Input value={message} onChange={handleChange} />
+          <Button colorScheme="teal" type="submit" variant={''}>
+            <HStack spacing={1}>
+              <EmailIcon w={8} h={8} color="teal" />
+              <ArrowForwardIcon w={8} h={8} color="teal" />
+            </HStack>
+          </Button>
+        </HStack>
       </form>
     </div>
   );
