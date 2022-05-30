@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useSSE } from '../api/chats';
 import { Box, SkeletonText, SkeletonCircle } from '@chakra-ui/react';
+import { useSSE } from '../api/chats';
+import { ChatContext } from '../context/chat';
 
 type Chat = {
   messages_count: number;
@@ -10,7 +11,7 @@ type Chat = {
 };
 
 type ChatsSSE = {
-  chats?: Chat[];
+  chats?: Chat[]; 
 };
 
 export const UserChats = () => {
@@ -23,21 +24,19 @@ export const UserChats = () => {
     }),
     [user?.sub],
   );
-
+  const { setChatId } = useContext(ChatContext)
   const { data } = useSSE<ChatsSSE>('chats', options);
-
-  console.log(data);
 
   return (
     <div>
       {data ? (
         <div>
           {data.chats?.map(({ title, messages_count, chat_id }) => (
-            <div key={chat_id}>
+            <Box key={chat_id} p={6} onClick={() => setChatId(chat_id)}>
               {title}
               {': '}
               {messages_count}
-            </div>
+            </Box>
           ))}
         </div>
       ) : (

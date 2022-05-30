@@ -1,6 +1,14 @@
 import React, { useState, createContext, PropsWithChildren } from 'react';
 
-export const ChatContext = createContext({});
+type ChatContextValues = {
+  chatId: string;
+  setChatId: (s: string) => void
+}
+
+export const ChatContext = createContext<ChatContextValues>({
+  chatId: '', setChatId(_: string): void {
+  },
+});
 
 export const ChatContextProvider = ({ children }: PropsWithChildren<any>) => {
   const [chatId, setChatId] = useState('');
