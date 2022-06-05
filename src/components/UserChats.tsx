@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Box, SkeletonText, SkeletonCircle } from '@chakra-ui/react';
+import { Box, SkeletonText, SkeletonCircle, Flex } from '@chakra-ui/react';
 import { useSSE } from '../api/chats';
 import { ChatContext } from '../context/chat';
 
@@ -13,6 +13,29 @@ type Chat = {
 type ChatsSSE = {
   chats?: Chat[]; 
 };
+
+const ChatsPlaceHolder = () => (
+  <div>
+    <Flex p={3}>
+      <SkeletonCircle size="10" />
+      <Flex flex="1" p={2} align="center">
+        <SkeletonText noOfLines={2} w="full"/>
+      </Flex>
+    </Flex>
+    <Flex p={3}>
+      <SkeletonCircle size="10" />
+      <Flex flex="1" p={2} align="center">
+        <SkeletonText noOfLines={2} w="full"/>
+      </Flex>
+    </Flex>
+    <Flex p={3}>
+      <SkeletonCircle size="10" />
+      <Flex flex="1" p={2} align="center">
+        <SkeletonText noOfLines={2} w="full"/>
+      </Flex>
+    </Flex>
+  </div>
+)
 
 export const UserChats = () => {
   const { user } = useAuth0();
@@ -32,7 +55,7 @@ export const UserChats = () => {
       {data ? (
         <div>
           {data.chats?.map(({ title, messages_count, chat_id }) => (
-            <Box key={chat_id} p={6} onClick={() => setChatId(chat_id)}>
+            <Box key={chat_id} p={3} onClick={() => setChatId(chat_id)}>
               {title}
               {': '}
               {messages_count}
@@ -40,10 +63,7 @@ export const UserChats = () => {
           ))}
         </div>
       ) : (
-        <Box padding="6" boxShadow="lg" bg="white">
-          <SkeletonCircle size="10" />
-          <SkeletonText mt="4" noOfLines={4} spacing="4" />
-        </Box>
+        <ChatsPlaceHolder />
       )}
     </div>
   );

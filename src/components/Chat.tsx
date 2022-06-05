@@ -22,8 +22,6 @@ export const Chat = ({ chatId }: ChatProps) => {
   const { data } = useSSE<ChatSSEData>(`chats/${chatId}`)
   const { user } = useAuth0()
 
-  console.log(data)
-
   return (
     <Flex justify="space-between" direction="column" align="space-between" h="full">
       <Flex>{data?.title}</Flex>
