@@ -62,7 +62,7 @@ const UserChat = ({
 
   const initial = users
     .filter((u) => u.user_id !== user?.sub)[0]
-    .username
+    .username ?? user?.name ?? '?'
     .charAt(0)
     .toUpperCase()
 
