@@ -23,7 +23,7 @@ export const Form = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <HStack>
+        <HStack p={3} pt={1}>
           <Input value={message} onChange={handleChange} />
           <Button colorScheme="teal" type="submit" variant={''}>
             <HStack spacing={1}>
