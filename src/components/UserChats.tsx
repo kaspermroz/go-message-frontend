@@ -60,9 +60,10 @@ const UserChat = ({
   const { setChatId } = useContext(ChatContext)
   const { user } = useAuth0()
 
-  const initial = users
+  const username = users
     .filter((u) => u.user_id !== user?.sub)[0]
     .username ?? user?.name ?? '?'
+  const initial = username
     .charAt(0)
     .toUpperCase()
 

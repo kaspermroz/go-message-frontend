@@ -22,7 +22,7 @@ export const ChatPage = () => {
       <Flex w={240} h="full" justify="space-between" direction="column">
         <UserChats />
         <Flex justify="flex-start" p={1}>
-          <Button colorScheme="teal" onClick={() => logout()}>
+          <Button colorScheme="teal" onClick={() => logout()} data-cy="logout-button">
             Log out
           </Button>
         </Flex>

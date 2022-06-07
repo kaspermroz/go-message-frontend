@@ -32,3 +32,6 @@ yarn-error.log*
 
 # lint-staged
 .eslintcache
+
+# cypress
+cypress.env.json

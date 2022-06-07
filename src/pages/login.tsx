@@ -24,7 +24,7 @@ export const LoginPage = () => {
               <Text my={8} fontSize="2xl">
                 Welcome to go-message! Fancy a quick chat? 💬
               </Text>
-              <Button colorScheme="teal" onClick={loginWithRedirect} px={16}>
+              <Button colorScheme="teal" onClick={loginWithRedirect} px={16} data-cy="login-button">
                 Log in
               </Button>
             </Stack>

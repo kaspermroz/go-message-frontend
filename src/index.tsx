@@ -21,6 +21,8 @@ root.render(
       domain={domain}
       clientId={clientId}
       redirectUri={window.location.origin}
+      cacheLocation="localstorage"
+      audience={`https://${domain}/api/v2/`}
     >
       <ChakraProvider>
         <ChatContextProvider>
