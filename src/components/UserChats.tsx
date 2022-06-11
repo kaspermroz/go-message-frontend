@@ -56,19 +56,21 @@ const UserChat = ({
   title,
   messages_count,
   users,
-}: Chat) => {
+  index,
+}: Chat & { index: number }) => {
   const { setChatId } = useContext(ChatContext)
   const { user } = useAuth0()
 
-  const username = users
-    .filter((u) => u.user_id !== user?.sub)[0]
+  const chatUser = users.length > 1 ? users
+    .filter((u) => u.user_id !== user?.sub)[0] : users[0]
+  const username = chatUser
     .username ?? user?.name ?? '?'
   const initial = username
     .charAt(0)
     .toUpperCase()
 
   return (
-    <Box key={chat_id} p={3} onClick={() => setChatId(chat_id)} cursor="pointer">
+    <Box key={chat_id} p={3} onClick={() => setChatId(chat_id)} cursor="pointer" data-cy={`user-chat-${index}`}>
       <HStack justify="space-between">
         <Circle size={10} bg={'#808080'} color="white">{initial}</Circle>
         <Text>{title}{': '}</Text>
@@ -94,8 +96,8 @@ export const UserChats = () => {
     <div>
       {data ? (
         <div>
-          {data.chats?.map((chat) => (
-            <UserChat {...chat} />
+          {data.chats?.map((chat, i) => (
+            <UserChat key={chat.chat_id} index={i} {...chat}  />
           ))}
         </div>
       ) : (

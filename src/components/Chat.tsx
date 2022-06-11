@@ -39,9 +39,9 @@ export const Chat = ({ chatId }: ChatProps) => {
   return (
     <Flex justify="space-between" direction="column" align="space-between" h="full">
       <Flex p={3} borderBottom="1px solid #E2E8F0">
-        <Text fontSize="xl">{data?.title}</Text>
+        <Text fontSize="xl" data-cy="chat-title">{data?.title}</Text>
       </Flex>
-      <Flex p={3} pb={0} h="full" direction="column" justify="flex-end">
+      <Flex p={3} pb={0} h="full" direction="column" justify="flex-end" data-cy="chat-messages">
         {data?.messages?.map(({ text, author_id }) => (
           <Message text={text} isAuthor={author_id === user?.sub} />
         ))}
